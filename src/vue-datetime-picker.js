@@ -61,6 +61,11 @@ var DEFAULT_LANGUAGE = "en-US";
  *    was changed. If this parameter is presented and is not null, it must be a
  *    function which accept one argument: the new date time, which is a moment
  *    object.
+ * @param inline
+ *    inline mode
+ * @param sideBySide
+ *    show date and time picker sideBySide
+ *
  */
 module.exports = {
   replace: true,
@@ -105,6 +110,16 @@ module.exports = {
       type: String,
       required: false,
       default: ""
+    },
+    inline: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    sideBySide: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     onChange: {
       required: false,
@@ -168,6 +183,9 @@ module.exports = {
       }
       options.tooltips = tooltips;
     }
+    // inline and sideBySide
+    options.inline = this.inline;
+    options.sideBySide = this.sideBySide;
     // create the control
     $(this.$el).datetimepicker(options);
     this.control = $(this.$el).data("DateTimePicker");
